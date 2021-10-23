@@ -2,8 +2,8 @@
 ## XoopsGrowl module for [XOOPS CMS 2.5.11+](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-[![Latest Pre-Release](https://img.shields.io/github/tag/DejaDingo/xoopsgrowl.svg?style=flat)](https://github.com/DejaDingo/xoopsgrowl/tags/)
-[![Latest Version](https://img.shields.io/github/release/DejaDingo/xoopsgrowl.svg?style=flat)](https://github.com/DejaDingo/xoopsgrowl/releases/)
+[![Latest Pre-Release](https://img.shields.io/github/tag/DejaDingo/XoopsGrowl.svg?style=flat)](https://github.com/DejaDingo/XoopsGrowl/tags/)
+[![Latest Version](https://img.shields.io/github/release/DejaDingo/XoopsGrowl.svg?style=flat)](https://github.com/DejaDingo/XoopsGrowl/releases/)
 
 **XoopsGrowl** is a module for [XOOPS CMS](https://xoops.org) to configure an alternative to the jGrowl notification using Bootstrap Alerts.
 
