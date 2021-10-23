@@ -8,6 +8,7 @@
 **XoopsGrowl** is a module for [XOOPS CMS](https://xoops.org) to configure an alternative to the jGrowl notification using Bootstrap Alerts.
 
 This module can be used with either Bootstrap 4.x or Bootstrap 5.x themes.
+
 	• The primary purpose is to add some events to setup the notification on redirect.
 	• There is no Admin (except the Help Overview/Instructions) or Main for this module.
 	• If the module is loaded it is enabled.
@@ -18,6 +19,7 @@ to replace the default Xoops template based redirection with a redirect notifica
 based on Bootstrap Alerts.
 
 The core hacks have no impact on system operation unless:
+
 	• the XoopsGrowl module is installed
 	• and the jGrowl redirect notification option is NOT selected
 
