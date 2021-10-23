@@ -15,3 +15,4 @@ Incorporate these files into your Bootstrap 4.x or Bootstrap 5.x theme as follow
 		This file will be automatically included whenever it is required for notification.
 	- if you include bootstrap.min.js at the end of your <body>,
 		you must add the include for bootstrap.xgrowl.js after the main Bootstrap file there.
+		--- THIS IS NOT CURRENTLY WORKING ---
