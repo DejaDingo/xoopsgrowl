@@ -45,8 +45,10 @@
 //	Do not load the file more than once
 //	Allows positioning the include after the primary bootstrap file at the end of the <body>
 //
-if (typeof(_XOOPSGROWL_LOADED) === 'undefined') { return }
-_XOOPSGROWL_LOADED = 1
+//		---  THIS DOES NOT WORK YET  ---
+//
+//	if (typeof window[XoopsGrowlAbstract] !== "undefined") { throw 0 }
+//
 //	========================================================================
 
 class XoopsGrowlAbstract {
