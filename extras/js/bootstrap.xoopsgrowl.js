@@ -44,145 +44,144 @@
 //	========================================================================
 //	Do not load the file more than once
 //	Allows positioning the include after the primary bootstrap file at the end of the <body>
-//
-//		---  THIS DOES NOT WORK YET  ---
-//
-//	if (typeof window[XoopsGrowlAbstract] !== "undefined") { throw 0 }
-//
 //	========================================================================
+//
+if ( typeof window['XoopsGrowlAbstract'] === 'undefined' ) {
 
-class XoopsGrowlAbstract {
+	class XoopsGrowlAbstract {
 
-	defaults = {
-		header:				'',						//	Not implemented yet
-		sticky:				false,					//	Not implemented yet
-		position:			'center',				//	Not implemented yet
-		glue:				'before',
-		type:				'info',
-		life:				3000,
-		log:				function() {},			//	Not implemented yet
-		animate:			true,
-		beforeOpen:			function() {},			//	Not impelemented yet
-		afterOpen:			function() {},			//	Not implemented yet
-		beforeClose:		function() {}			//	Not implemented yet
-	}
-
-	constructor( msg, opts ) {
-		this.bsVersion = bootstrap.Tooltip.VERSION;
-		this.options = this.defaults;
-		this.message = msg;
-		self = this;
-		for ( var key in opts ) {
-			self.options[key] = opts[key];
+		defaults = {
+			header:				'',						//	Not implemented yet
+			sticky:				false,					//	Not implemented yet
+			position:			'center',				//	Not implemented yet
+			glue:				'before',
+			type:				'info',
+			life:				3000,
+			log:				function() {},			//	Not implemented yet
+			animate:			true,
+			beforeOpen:			function() {},			//	Not impelemented yet
+			afterOpen:			function() {},			//	Not implemented yet
+			beforeClose:		function() {}			//	Not implemented yet
 		}
+
+		constructor( msg, opts ) {
+			this.bsVersion = bootstrap.Tooltip.VERSION;
+			this.options = this.defaults;
+			this.message = msg;
+			self = this;
+			for ( var key in opts ) {
+				self.options[key] = opts[key];
+			}
+		}
+
+		/**
+		 * Update the DOM to include the desired Alert node and set it up to auto-close
+		 *
+		 * @return  {void}
+		 */
+		raiseAlert() {
+			//	alert("BS[" + this.constructor.name + "] = " + this.message);
+			var alertNode = this.render(this.message);
+			this.autoClose(alertNode, this.options['life']);
+		}
+
+		/**
+		 * Add the appropriate Bootstrap Alert node to the DOM
+		 *
+		 * @param   {string}  message  The message text
+		 *
+		 * @return  {DOM DIV node}     The constructed Alert node
+		 */
+		render( message ) {
+			//	Override in subclass to add Alert node as lastChild to #xGrowl node
+			//	Return the constructed Alert node
+		}
+
+		/**
+		 * Trigger a timeout to auto-close the Bootstrap Alert node
+		 *
+		 * @param   {DOM DIV node}  alertNode  The constructed Alert node
+		 * @param   {integer}       time       The timeout duration (in milliseconds)
+		 *
+		 * @return  {void}
+		 */
+		autoClose( alertNode, time ) {
+			setTimeout( function () {
+				var alert = new bootstrap.Alert( alertNode );
+				alert.close();
+			}, time );
+		}
+
 	}
 
 	/**
-	 * Update the DOM to include the desired Alert node and set it up to auto-close
-	 *
-	 * @return  {void}
+	 * Construct, insert and return a Bootstrap 4 based Alert node
 	 */
-	raiseAlert() {
-		//	alert("BS[" + this.constructor.name + "] = " + this.message);
-		var alertNode = this.render(this.message);
-		this.autoClose(alertNode, this.options['life']);
+	class XoopsGrowlBS4 extends XoopsGrowlAbstract {
+
+		render( message ) {
+			var type = this.options['type'];
+			var animate = this.options['animate'] ? ' fade show' : '';
+			var alertPlaceholder = document.getElementById('xGrowl');
+
+			var alertNode = document.createElement('div')
+			alertNode.innerHTML = `<div class="alert alert-${type} alert-dismissible${animate}" role="alert">${message}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`;
+
+			alertPlaceholder.append(alertNode)
+			return alertNode;
+		}
+
 	}
 
 	/**
-	 * Add the appropriate Bootstrap Alert node to the DOM
-	 *
-	 * @param   {string}  message  The message text
-	 *
-	 * @return  {DOM DIV node}     The constructed Alert node
+	 * Construct, insert and return a Bootstrap 5 based Alert node
 	 */
-	render( message ) {
-		//	Override in subclass to add Alert node as lastChild to #xGrowl node
-		//	Return the constructed Alert node
+	class XoopsGrowlBS5 extends XoopsGrowlAbstract {
+
+		render( message ) {
+			var type = this.options['type'];
+			var animate = this.options['animate'] ? ' fade show' : '';
+			var alertPlaceholder = document.getElementById('xGrowl');
+
+			var alertNode = document.createElement('div')
+			alertNode.innerHTML = `<div class="alert alert-${type} alert-dismissible${animate}" role="alert">${message}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+
+			alertPlaceholder.append(alertNode)
+			return alertNode;
+		}
+
 	}
 
 	/**
-	 * Trigger a timeout to auto-close the Bootstrap Alert node
+	 * External function to be called on Document ready
 	 *
-	 * @param   {DOM DIV node}  alertNode  The constructed Alert node
-	 * @param   {integer}       time       The timeout duration (in milliseconds)
+	 * @param   {string}  msg   The message text (may include HTML markup)
+	 * @param   {array}   opts  Call specific changes to the default options
 	 *
-	 * @return  {void}
+	 * @return  {DOM DIV node}  The constructed alert node
 	 */
-	autoClose( alertNode, time ) {
-		setTimeout( function () {
-			var alert = new bootstrap.Alert( alertNode );
-			alert.close();
-		}, time );
-	}
+	var xoopsGrowl = function( msg , opts ) {
+		// Create the placeholder container node
+		var xGrowl = document.getElementById('xGrowl');
+		if ( null === xGrowl ) {
+			var placeholder = document.createElement('div');
+			placeholder.id = 'xGrowl';
+			if ( opts['glue'] == 'before' ) {
+				document.body.prepend(placeholder);
+			} else {
+				document.body.append(placeholder);
+			}
+		}
 
-}
-
-/**
- * Construct, insert and return a Bootstrap 4 based Alert node
- */
-class XoopsGrowlBS4 extends XoopsGrowlAbstract {
-
-	render( message ) {
-		var type = this.options['type'];
-		var animate = this.options['animate'] ? ' fade show' : '';
-		var alertPlaceholder = document.getElementById('xGrowl');
-
-        var alertNode = document.createElement('div')
-		alertNode.innerHTML = `<div class="alert alert-${type} alert-dismissible${animate}" role="alert">${message}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`;
-
-        alertPlaceholder.append(alertNode)
-		return alertNode;
-	}
-
-}
-
-/**
- * Construct, insert and return a Bootstrap 5 based Alert node
- */
-class XoopsGrowlBS5 extends XoopsGrowlAbstract {
-
-	render( message ) {
-		var type = this.options['type'];
-		var animate = this.options['animate'] ? ' fade show' : '';
-		var alertPlaceholder = document.getElementById('xGrowl');
-
-        var alertNode = document.createElement('div')
-		alertNode.innerHTML = `<div class="alert alert-${type} alert-dismissible${animate}" role="alert">${message}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
-
-        alertPlaceholder.append(alertNode)
-		return alertNode;
-	}
-
-}
-
-/**
- * External function to be called on Document ready
- *
- * @param   {string}  msg   The message text (may include HTML markup)
- * @param   {array}   opts  Call specific changes to the default options
- *
- * @return  {DOM DIV node}  The constructed alert node
- */
-var xoopsGrowl = function( msg , opts ) {
-	// Create the placeholder container node
-	var xGrowl = document.getElementById('xGrowl');
-	if ( null === xGrowl ) {
-		var placeholder = document.createElement('div');
-		placeholder.id = 'xGrowl';
-		if ( opts['glue'] == 'before' ) {
-			document.body.prepend(placeholder);
+		//	Instantiate the appropriate class and raise the Alert
+		let message = {};
+		if ( bootstrap.Tooltip.VERSION.substring(0, 1) > '4' ) {
+			message = new XoopsGrowlBS5( msg, opts );
 		} else {
-			document.body.append(placeholder);
+			message = new XoopsGrowlBS4( msg, opts );
 		}
-	}
+		message.raiseAlert();
 
-	//	Instantiate the appropriate class and raise the Alert
-	let message = {};
-	if ( bootstrap.Tooltip.VERSION.substring(0, 1) > '4' ) {
-		message = new XoopsGrowlBS5( msg, opts );
-	} else {
-		message = new XoopsGrowlBS4( msg, opts );
 	}
-	message.raiseAlert();
 
 }
