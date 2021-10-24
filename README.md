@@ -2,15 +2,15 @@
 ## XoopsGrowl module for [XOOPS CMS 2.5.11+](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-[![Latest Pre-Release](https://img.shields.io/github/tag/DejaDingo/XoopsGrowl.svg?style=flat)](https://github.com/DejaDingo/XoopsGrowl/tags/)
-[![Latest Version](https://img.shields.io/github/release/DejaDingo/XoopsGrowl.svg?style=flat)](https://github.com/DejaDingo/XoopsGrowl/releases/)
+[![Latest Pre-Release](https://img.shields.io/github/tag/DejaDingo/xoopsgrowl.svg?style=flat)](https://github.com/DejaDingo/xoopsgrowl/tags/)
+[![Latest Version](https://img.shields.io/github/release/DejaDingo/xoopsgrowl.svg?style=flat)](https://github.com/DejaDingo/xoopsgrowl/releases/)
 
 **XoopsGrowl** is a module for [XOOPS CMS](https://xoops.org) to configure an alternative to the jGrowl notification using Bootstrap Alerts.
 
 This module is inspired by the ubiquitous and exceptional [jGrowl](https://github.com/stanlemon/jGrowl) created by Stan Lemon.
 
 XoopsGrowl can be used with either Bootstrap 4.x or Bootstrap 5.x themes.
-It is implemented in vanilla JavaScript  because Bootstrap 5 no longer requires jQuery,
+It is implemented in vanilla JavaScript because Bootstrap 5 no longer requires jQuery,
 and jQuery can therefore be eliminated from the theme's load requirements.
 
 	• The primary purpose is to add some events to setup the notification on redirect.
