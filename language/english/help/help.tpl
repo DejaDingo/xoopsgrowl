@@ -1,6 +1,6 @@
 <div id="help-template" class="outer">
     <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/<{$smarty.const._MI_MYMENUS_DIRNAME}>/admin/index.php"
+        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/<{$smarty.const._XOOPSGROWL_MI_DIRNAME}>/admin/index.php"
         title="<{$smarty.const.XOOPSGROWL_MI_BACK_2_ADMIN}><{$smarty.const._XOOPSGROWL_MI_MD_NAME}>">
             <{$smarty.const._XOOPSGROWL_MI_MD_NAME}>
             <img src="<{xoAdminIcons home.png}>"
