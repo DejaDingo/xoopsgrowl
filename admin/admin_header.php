@@ -25,6 +25,8 @@ use XoopsModules\Xoopsgrowl\{
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 
+require dirname(__DIR__) . '/preloads/autoloader.php';
+
 require dirname(__DIR__, 3) . '/include/cp_header.php';
 
 $adminObject = Admin::getInstance();
