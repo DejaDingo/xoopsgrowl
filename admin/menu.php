@@ -20,30 +20,27 @@
 
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-$path = dirname(dirname(dirname(__DIR__)));
-include_once $path . '/mainfile.php';
+use Xmf\Module\Admin;
+use XoopsModules\Xoopsgrowl\{
+    Helper
+};
 
-$dirname         = basename(dirname(__DIR__));
-/* @var XoopsModuleHandler $module_handler */
-$module_handler  = xoops_getHandler('module');
-$module          = $module_handler->getByDirname($dirname);
-$pathIcon32      = $module->getInfo('icons32');
-$pathModuleAdmin = $module->getInfo('dirmoduleadmin');
-$pathLanguage    = $path . $pathModuleAdmin;
+include_once __DIR__ . '/admin_header.php';
 
-if (!file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
-    $fileinc = $pathLanguage . '/language/english/main.php';
-}
+$pathIcon32 = Admin::menuIconPath('');
 
-include_once $fileinc;
+$helper = Helper::getInstance();
+$helper->loadLanguage('main');
 
-$adminmenu = array();
+$adminmenu[] = [
+    'title' => _XOOPSGROWL_MI_HOME,
+    'link' => 'admin/index.php',
+    'icon' => $pathIcon32 . '/home.png',
+];
 
-$i                      = 1;
-$adminmenu[$i]['title'] = _XOOPSGROWL_MI_HOME;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
-++$i;
-$adminmenu[$i]['title'] = _XOOPSGROWL_MI_ABOUT;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
+$adminmenu[] = [
+    'title' => _XOOPSGROWL_MI_ABOUT,
+    'link' => 'admin/about.php',
+    'icon' => $pathIcon32 . '/about.png',
+];
+

@@ -1,7 +1,7 @@
 <?php
 /**
  * XoopsGrowl
- * 	jGrowl Replacement using Bootstrap 4 or 5
+ *    jGrowl Replacement using Bootstrap 4 or 5
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -18,21 +18,18 @@
  * @author              DejaDingo
  */
 
-$path = dirname(dirname(dirname(__DIR__)));
-include_once $path . '/mainfile.php';
-include_once $path . '/include/cp_functions.php';
-require_once $path . '/include/cp_header.php';
+use Xmf\Module\Admin;
+use XoopsModules\Xoopsgrowl\{
+    Helper
+};
+/** @var Admin $adminObject */
+/** @var Helper $helper */
 
-global $xoopsModule;
+require dirname(__DIR__, 3) . '/include/cp_header.php';
 
-$thisModuleDir = $GLOBALS['xoopsModule']->getVar('dirname');
+$adminObject = Admin::getInstance();
 
+$helper = Helper::getInstance();
 // Load language files
-xoops_loadLanguage('admin', $thisModuleDir);
-xoops_loadLanguage('modinfo', $thisModuleDir);
-
-$pathIcon16      = '../' . $xoopsModule->getInfo('icons16');
-$pathIcon32      = '../' . $xoopsModule->getInfo('icons32');
-$pathModuleAdmin = $xoopsModule->getInfo('dirmoduleadmin');
-
-include_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');

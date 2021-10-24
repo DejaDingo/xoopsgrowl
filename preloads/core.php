@@ -29,6 +29,14 @@ class XoopsgrowlCorePreload extends XoopsPreloadItem
     /**
      * @param $args
      */
+    public static function eventCoreIncludeCommonEnd($args)
+    {
+        require __DIR__ . '/autoloader.php';
+    }
+
+    /**
+     * @param $args
+     */
     public static function eventXgrowlIncludeFunctionsRedirectheader($args)
     {
         global $xoopsConfig;
@@ -93,5 +101,4 @@ class XoopsgrowlCorePreload extends XoopsPreloadItem
                 }))");
         }
     }
-
 }
