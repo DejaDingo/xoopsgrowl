@@ -9,4 +9,4 @@ define('_XOOPSGROWL_MI_DIRNAME', basename(dirname(__FILE__, 3)));
 define('_XOOPSGROWL_MI_ABOUT', 'About');
 define('_XOOPSGROWL_MI_HOME', 'Home');
 define('_XOOPSGROWL_MI_HELP_OVERVIEW', 'Overview/Instructions');
-define('XOOPSGROWL_MI_BACK_2_ADMIN', 'Back to Administration of ');
+define('_XOOPSGROWL_MI_BACK_2_ADMIN', 'Back to Administration of ');

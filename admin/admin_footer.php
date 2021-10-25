@@ -10,13 +10,16 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2000-2016 XOOPS Project (www.xoops.org)
- * @license             GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package             xoopsgrowl
+ * @copyright           {@link http://xoops.org/ XOOPS Project}
+ * @license             {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package             XoopsGrowl
  * @since               2.5.11
  * @author              XOOPS Module Team
  * @author              DejaDingo
- **/
+ */
+
+$pathIcon32 = Xmf\Module\Admin::iconUrl('', 32);
+
 echo "<div class='adminfooter'>\n" . "  <div style='text-align: center;'>\n" . "    <a href='https://xoops.org' rel='external'><img src='{$pathIcon32}/xoopsmicrobutton.gif' alt='XOOPS' title='XOOPS'></a>\n" . "  </div>\n" . '  ' . _AM_MODULEADMIN_ADMIN_FOOTER . "\n" . '</div>';
 
 xoops_cp_footer();

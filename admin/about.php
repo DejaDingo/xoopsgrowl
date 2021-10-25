@@ -10,22 +10,22 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2000-2016 XOOPS Project (www.xoops.org)
- * @license             GNU GPL (https://www.gnu.org/licenses/gpl-2.0.html/)
- * @package             Profile
- * @since               2.5.0
- * @author              Mage, Mamba
- **/
+ * @copyright           {@link http://xoops.org/ XOOPS Project}
+ * @license             {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package             XoopsGrowl
+ * @since               2.5.11
+ * @author              XOOPS Module Team
+ * @author              DejaDingo
+ */
 
-include_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once __DIR__ . '/admin_header.php';
+use Xmf\Module\Admin;
+/** @var Admin $adminObject */
+
+require __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-$module_info = $module_handler->get($xoopsModule->getVar('mid'));
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject::setPaypal('xoopsfoundation@gmail.com');
+$adminObject->displayAbout(false);
 
-$aboutAdmin = new ModuleAdmin();
-
-echo $aboutAdmin->addNavigation(basename(__FILE__));
-echo $aboutAdmin->renderAbout('xoopsfoundation@gmail.com', false);
-
-include_once __DIR__ . '/admin_footer.php';
+require __DIR__ . '/admin_footer.php';

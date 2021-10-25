@@ -1,10 +1,10 @@
 <div id="help-template" class="outer">
     <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/<{$smarty.const._MI_MYMENUS_DIRNAME}>/admin/index.php"
-        title="<{$smarty.const.XOOPSGROWL_MI_BACK_2_ADMIN}><{$smarty.const._XOOPSGROWL_MI_MD_NAME}>">
+        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/<{$smarty.const._XOOPSGROWL_MI_DIRNAME}>/admin/index.php"
+        title="<{$smarty.const._XOOPSGROWL_MI_BACK_2_ADMIN}><{$smarty.const._XOOPSGROWL_MI_MD_NAME}>">
             <{$smarty.const._XOOPSGROWL_MI_MD_NAME}>
             <img src="<{xoAdminIcons home.png}>"
-                alt="<{$smarty.const.XOOPSGROWL_MI_BACK_2_ADMIN}> <{$smarty.const._XOOPSGROWL_MI_MD_NAME}>">
+                alt="<{$smarty.const._XOOPSGROWL_MI_BACK_2_ADMIN}> <{$smarty.const._XOOPSGROWL_MI_MD_NAME}>">
         </a></h1>
 
     <h4 class="odd">DESCRIPTION</h4>
@@ -137,16 +137,12 @@
         <br><br>
         <b>css/xoopsgrowl.css</b>
             <ul>
-                <li>either include this file in your theme.tpl</li>
-                <li>or copy the contents into your theme's css/my_xoops.css</li>
+                <li>include this file in your theme.tpl <br>or </li>
+                <li>copy the contents into your theme's css/my_xoops.css</li>
             </ul>
         <b>js/bootstrap.xgrowl.js</b>
             <ul>
-                <li>this must be included after bootstrap.min.js</li>
-                <li>if you include bootstrap.min.js in the &lt;head&gt; section, no other updates are required.
-                <br>This file will be automatically included whenever it is required for notification</li>
-                <li>if you include bootstrap.min.js at the end of your &lt;body&gt;,
-                <br>you must add the include for bootstrap.xgrowl.js after the main Bootstrap file there.</li>
+                <li>this file will be automatically included whenever it is required for notification</li>
             </ul>
     </div>
 
