@@ -43,10 +43,14 @@
 
 //	========================================================================
 //	Do not load the file more than once
-//	Allows positioning the include after the primary bootstrap file at the end of the <body>
+//	Allows including the primary bootstrap file at the end of the <body>
 //	========================================================================
 //
-if ( typeof window['XoopsGrowlAbstract'] === 'undefined' ) {
+if ( typeof window['XoopsGrowlAbstract'] !== 'undefined' ) {
+
+	console.log( 'bootstrap.xgrowl.js already loaded' );
+
+} else {
 
 	class XoopsGrowlAbstract {
 

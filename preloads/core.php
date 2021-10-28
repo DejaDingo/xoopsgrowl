@@ -75,13 +75,9 @@ class XoopsgrowlCorePreload extends XoopsPreloadItem
         }
 
         if (!empty($_SESSION['redirect_message'])) {
-            //  WARNING: bootstrap.xgrowl.js must be loaded AFTER your theme's bootstrap.min.js file
-            //  If you include bootstrap.min.js at the end of your theme's theme.tpl,
-            //      you must include this file after it there.
-            //  If you include bootstrap.min.js in the <head> section of your theme's theme.tpl,
-            //      you may uncomment the following line.
+            //  Add bootstrap.xgrowl.js - the file will not be included twice
+            //  This permits including bootstrap.min.js at the end of your theme's <body>
             $GLOBALS['xoTheme']->addScript('js/bootstrap.xoopsgrowl.js');
-            $message = $_SESSION['redirect_message'];
             $options = "glue:'before'";
             if (!empty($_SESSION['redirect_options'])) {
                 foreach ($_SESSION['redirect_options'] as $name => $value) {
@@ -97,7 +93,7 @@ class XoopsgrowlCorePreload extends XoopsPreloadItem
             }
             $GLOBALS['xoTheme']->addScript('', array('type' => 'text/javascript'),
                 "document.addEventListener('DOMContentLoaded', (() => {
-                    xoopsGrowl('$message', { $options });
+                    xoopsGrowl(\"" .  $_SESSION['redirect_message'] . "\", { $options });
                 }))");
         }
     }
